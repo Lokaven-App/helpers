@@ -58,8 +58,8 @@ func Init(config Config) Message {
 	return msg
 }
 
-func (msg *Message) Publish(ctx context.Context, header []Header, code *Code) error {
-	body, err := getBody(msg, code)
+func (msg *Message) Publish(ctx context.Context, header []Header, code Code) error {
+	body, err := getBody(msg, &code)
 	if err != nil {
 		return err
 	}
