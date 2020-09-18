@@ -19,8 +19,8 @@ type Config struct {
 
 type Message struct {
 	config       kafka.WriterConfig
-	defaults     []byte
-	notification message.Notification
+	Defaults     []byte
+	Notification message.Notification
 }
 
 type Header struct {
@@ -82,9 +82,9 @@ func (msg *Message) Publish(ctx context.Context, header []Header, code Code) err
 func getBody(msg *Message, code *Code) (body []byte, err error) {
 	switch *code {
 	case 0:
-		body = msg.defaults
+		body = msg.Defaults
 	case 1:
-		body, err = json.Marshal(msg.notification)
+		body, err = json.Marshal(msg.Notification)
 		if err != nil {
 			return nil, err
 		}
