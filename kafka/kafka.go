@@ -64,7 +64,6 @@ func (msg *Message) Publish(ctx context.Context, header []Header, code Code) err
 	if err != nil {
 		return err
 	}
-	fmt.Println(body)
 
 	headers := []kafka.Header{}
 	for _, val := range header {
@@ -84,13 +83,16 @@ func (msg *Message) Publish(ctx context.Context, header []Header, code Code) err
 func getBody(msg *Message, code *Code) (body []byte, err error) {
 	switch *code {
 	case 0:
+		fmt.Println("Publish message default with code : ", code)
 		body = msg.Defaults
 	case 1:
+		fmt.Println("Publish message notification with code : ", code)
 		body, err = json.Marshal(msg.Notification)
 		if err != nil {
 			return nil, err
 		}
 	default:
+		//Action
 	}
 	return body, nil
 }
