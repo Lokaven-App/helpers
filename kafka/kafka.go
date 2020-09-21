@@ -3,6 +3,7 @@ package kafka
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/segmentio/kafka-go"
@@ -63,6 +64,7 @@ func (msg *Message) Publish(ctx context.Context, header []Header, code Code) err
 	if err != nil {
 		return err
 	}
+	fmt.Println(body)
 
 	headers := []kafka.Header{}
 	for _, val := range header {
