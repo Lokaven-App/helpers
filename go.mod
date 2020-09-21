@@ -3,10 +3,9 @@ module gitlab.com/lokaventour/helpers
 go 1.13
 
 require (
-	github.com/apex/log v1.9.0
-	github.com/bxcodec/faker v2.0.1+incompatible
 	github.com/golang/protobuf v1.4.1
-	github.com/segmentio/kafka-go v0.4.2
-	github.com/tj/assert v0.0.3
+	github.com/segmentio/kafka-go v0.3.7
+	golang.org/x/net v0.0.0-20190620200207-3b0461eec859 // indirect
+	golang.org/x/text v0.3.2 // indirect
 	google.golang.org/protobuf v1.25.0
 )
