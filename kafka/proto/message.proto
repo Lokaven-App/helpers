@@ -8,10 +8,7 @@ message Notification {
     message Body {
         string message = 1;
         string sender = 2;
-        message Meta {
-            bytes meta = 1;                               
-        }
-        Meta meta = 3;
+        bytes meta = 3;
     }
     message Participants {
         string user_id = 1;
