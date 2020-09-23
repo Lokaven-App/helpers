@@ -37,7 +37,7 @@ const (
 	MessageNotification Code = 1
 )
 
-func Init(config *Config) Message {
+func Init(config Config) Message {
 	dialer := kafka.Dialer{
 		Timeout: 10 * time.Second,
 		SASLMechanism: plain.Mechanism{
@@ -81,7 +81,7 @@ func (msg *Message) Publish(ctx context.Context, header []Header, code Code) err
 	return nil
 }
 
-func Consumer(config *Config) *kafka.Reader {
+func Consumer(config Config) *kafka.Reader {
 	reader := kafka.NewReader(kafka.ReaderConfig{
 		Brokers: []string{config.Url},
 		Dialer: &kafka.Dialer{
