@@ -16,6 +16,7 @@ type Config struct {
 	Password string
 	Url      string
 	Topic    string
+	Group    string
 }
 
 type Message struct {
@@ -36,7 +37,7 @@ const (
 	MessageNotification Code = 1
 )
 
-func Init(config Config) Message {
+func Init(config *Config) Message {
 	dialer := kafka.Dialer{
 		Timeout: 10 * time.Second,
 		SASLMechanism: plain.Mechanism{
@@ -78,6 +79,23 @@ func (msg *Message) Publish(ctx context.Context, header []Header, code Code) err
 		return errPublish
 	}
 	return nil
+}
+
+func Consumer(config *Config) *kafka.Reader {
+	reader := kafka.NewReader(kafka.ReaderConfig{
+		Brokers: []string{config.Url},
+		Dialer: &kafka.Dialer{
+			SASLMechanism: plain.Mechanism{
+				Username: config.Username,
+				Password: config.Password,
+			},
+		},
+		GroupID:  config.Group,
+		Topic:    config.Topic,
+		MinBytes: 10e3, // 10KB
+		MaxBytes: 10e6, // 10MB
+	})
+	return reader
 }
 
 func getBody(msg *Message, code *Code) (body []byte, err error) {
