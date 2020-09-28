@@ -8,7 +8,7 @@ import (
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/sasl/plain"
 	log "github.com/sirupsen/logrus"
-	message "gitlab.com/lokaventour/helpers/kafka/proto"
+	"gitlab.com/lokaventour/proto/notification"
 )
 
 type Config struct {
@@ -22,7 +22,7 @@ type Config struct {
 type Message struct {
 	config       kafka.WriterConfig
 	Defaults     []byte
-	Notification message.Notification
+	Notification notification.Notification
 }
 
 type Header struct {
@@ -105,7 +105,7 @@ func getBody(msg *Message, code *Code) (body []byte, err error) {
 		body = msg.Defaults
 	case 1:
 		log.Infof("Publish message notification with code : ", *code)
-		body, err = json.Marshal(msg.Notification)
+		body, err = json.Marshal(&msg.Notification)
 		if err != nil {
 			return nil, err
 		}
