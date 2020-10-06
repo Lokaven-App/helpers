@@ -8,8 +8,9 @@ require (
 	github.com/golang/protobuf v1.4.1
 	github.com/mailgun/mailgun-go v2.0.0+incompatible
 	github.com/mailgun/mailgun-go/v3 v3.6.4
+	github.com/pusher/pusher-http-go v4.0.1+incompatible
 	github.com/segmentio/kafka-go v0.3.7
 	github.com/sirupsen/logrus v1.6.0
-	gitlab.com/lokaventour/proto v0.0.0-20200928062224-bc0229ef6a91 // indirect
+	gitlab.com/lokaventour/proto v0.0.0-20200928062224-bc0229ef6a91
 	google.golang.org/protobuf v1.25.0
 )

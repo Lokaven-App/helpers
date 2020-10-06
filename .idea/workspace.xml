@@ -20,16 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b3ac579-92a2-4314-9327-8ac59cdeddff" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pusher/pusher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka/kafka.go" beforeDir="false" afterPath="$PROJECT_DIR$/kafka/kafka.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka/proto/message.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka/proto/message.proto" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" path="/usr/lib/go-1.13" />
   <component name="Git.Settings">
@@ -49,11 +55,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="Vcs.Log.Tabs.Properties">
@@ -66,8 +74,19 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="431" y="239" width="728" height="451" key="EditFileWatcherDialog" timestamp="1601417933164">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="431" y="239" width="728" height="451" key="EditFileWatcherDialog/0.27.1600.873@0.27.1600.873" timestamp="1601417933164" />
+    <state x="289" y="98" width="1022" height="732" key="SettingsEditor" timestamp="1601418119469">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="289" y="98" width="1022" height="732" key="SettingsEditor/0.27.1600.873@0.27.1600.873" timestamp="1601418119469" />
   </component>
 </project>
