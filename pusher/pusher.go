@@ -1,31 +1,31 @@
 package pusher
 
-import "github.com/pusher/pusher-http-go"
+import (
+	pushnotifications "github.com/pusher/push-notifications-go"
+	log "github.com/sirupsen/logrus"
+)
 
 type Config struct {
-	AppID   string
-	Key     string
-	Secret  string
-	Cluster string
+	InstanceId string
+	SecretKey  string
 }
 
 type Client struct {
-	*pusher.Client
+	pushnotifications.PushNotifications
 }
 
 func Init(config Config) Client {
-	client := pusher.Client{
-		AppID:   config.AppID,
-		Key:     config.Key,
-		Secret:  config.Secret,
-		Cluster: config.Cluster,
+	client, err := pushnotifications.New(config.InstanceId, config.SecretKey)
+	if err != nil {
+		log.Error(err.Error())
 	}
-	return Client{&client}
+	return Client{client}
 }
 
-func (client *Client) PushTrigger(data []byte, event, channel string) error {
-	if err := client.Trigger(channel, event, data); err != nil {
-		return err
+func (client *Client) PublishNotification(users []string, publishRequest map[string]interface{}) (string, error) {
+	publishId, err := client.PublishToUsers(users, publishRequest)
+	if err != nil {
+		return "", err
 	}
-	return nil
+	return publishId, nil
 }
