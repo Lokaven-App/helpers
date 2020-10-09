@@ -8,7 +8,7 @@ import (
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/sasl/plain"
 	log "github.com/sirupsen/logrus"
-	"gitlab.com/lokaventour/proto/notification"
+	"github.com/Lokaven-App/proto/notification"
 )
 
 type Config struct {
