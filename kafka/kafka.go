@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/Lokaven-App/proto/notification"
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/sasl/plain"
 	log "github.com/sirupsen/logrus"
-	"github.com/Lokaven-App/proto/notification"
 )
 
 type Config struct {
