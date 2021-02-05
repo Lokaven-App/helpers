@@ -30,6 +30,9 @@ func Mailgun(config Config) *Mailer {
 
 func (mg *Mailer) SendMessage(subject, text, to string) (string, error) {
 	newMessage := mg.NewMessage("aniqma@aniqma.com", subject, text, to)
+	newMessage.SetTemplate("lokaven")
+	newMessage.AddTemplateVariable("title", subject)
+	newMessage.AddVariable("message", text)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 	defer cancel()
 	_, id, err := mg.Send(ctx, newMessage)
