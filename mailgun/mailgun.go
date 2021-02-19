@@ -50,12 +50,13 @@ func (mg *Mailer) SendMessage(subject, text, to string) (string, error) {
 }
 
 //AddListMemberHost : method for adding member host
-func (mg *Mailer) AddListMemberHost(member *Member) error {
+func (mg *Mailer) AddListMemberHost(member *Member, variable map[string]interface{}) error {
 
 	memberHost := _mailgun.Member{
 		Address:    member.Address,
 		Name:       member.Name,
 		Subscribed: _mailgun.Subscribed,
+		Vars:       variable,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
@@ -65,12 +66,13 @@ func (mg *Mailer) AddListMemberHost(member *Member) error {
 }
 
 //AddListMemberGuest : method for adding member guest
-func (mg *Mailer) AddListMemberGuest(member *Member) error {
+func (mg *Mailer) AddListMemberGuest(member *Member, variable map[string]interface{}) error {
 
 	memberGuest := _mailgun.Member{
 		Address:    member.Address,
 		Name:       member.Name,
 		Subscribed: _mailgun.Subscribed,
+		Vars:       variable,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
