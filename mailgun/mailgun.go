@@ -22,8 +22,8 @@ type Mailer struct {
 //Recepants : struct that define a group recepants
 type Recepants struct {
 	Name  string
-	id    string
-	email string
+	ID    string
+	Email string
 }
 
 //Mailgun : set connection to mailgun
@@ -54,16 +54,16 @@ func (mg *Mailer) SendMessage(subject, text, to string) (string, error) {
 func (mg *Mailer) SendGroup(subject, text string, newRecepants []*Recepants) (string, error) {
 	m := make(map[string]interface{})
 	for _, recepent := range newRecepants {
-		newMessage := mg.NewMessage("lokaventour.com@gmail.com", subject, text, recepent.email)
+		newMessage := mg.NewMessage("lokaventour.com@gmail.com", subject, text, recepent.Email)
 		newMessage.SetTemplate("lokaven")
 		newMessage.AddTemplateVariable("title", subject)
 		newMessage.AddVariable("message", text)
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 		defer cancel()
-		m["uid"] = recepent.id
+		m["id"] = recepent.ID
 		m["name"] = recepent.Name
 
-		newMessage.AddRecipientAndVariables(recepent.email, m)
+		newMessage.AddRecipientAndVariables(recepent.Email, m)
 
 		_, id, err := mg.Send(ctx, newMessage)
 		return id, err
