@@ -19,11 +19,10 @@ type Mailer struct {
 	*_mailgun.MailgunImpl
 }
 
-//Recepants : struct that define a group recepants
-type Recepants struct {
-	Name  string
-	ID    string
-	Email string
+//Member : struct that define member mailing
+type Member struct {
+	Address string
+	Name    string
 }
 
 //Mailgun : set connection to mailgun
@@ -50,23 +49,32 @@ func (mg *Mailer) SendMessage(subject, text, to string) (string, error) {
 	return id, err
 }
 
-//SendGroup : to send email blast
-func (mg *Mailer) SendGroup(subject, text string, newRecepants []*Recepants) (string, error) {
-	m := make(map[string]interface{})
-	for _, recepent := range newRecepants {
-		newMessage := mg.NewMessage("lokaventour.com@gmail.com", subject, text, recepent.Email)
-		newMessage.SetTemplate("lokaven")
-		newMessage.AddTemplateVariable("title", subject)
-		newMessage.AddVariable("message", text)
-		ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
-		defer cancel()
-		m["id"] = recepent.ID
-		m["name"] = recepent.Name
+//AddListMemberHost : method for adding member host
+func (mg *Mailer) AddListMemberHost(member *Member) error {
 
-		newMessage.AddRecipientAndVariables(recepent.Email, m)
-
-		_, id, err := mg.Send(ctx, newMessage)
-		return id, err
+	memberHost := _mailgun.Member{
+		Address:    member.Address,
+		Name:       member.Name,
+		Subscribed: _mailgun.Subscribed,
 	}
-	return "", nil
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+	defer cancel()
+
+	return mg.CreateMember(ctx, true, "host@mg.lokaventour.com", memberHost)
+}
+
+//AddListMemberGuest : method for adding member guest
+func (mg *Mailer) AddListMemberGuest(member *Member) error {
+
+	memberGuest := _mailgun.Member{
+		Address:    member.Address,
+		Name:       member.Name,
+		Subscribed: _mailgun.Subscribed,
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+	defer cancel()
+
+	return mg.CreateMember(ctx, true, "guest@mg.lokaventour.com", memberGuest)
 }
