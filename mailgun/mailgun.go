@@ -2,6 +2,7 @@ package mailgun
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	_mailgun "github.com/mailgun/mailgun-go/v3"
@@ -40,12 +41,15 @@ func Mailgun(config Config) *Mailer {
 //SendMessage : to send email
 func (mg *Mailer) SendMessage(variables map[string]interface{}, template, subject, to string) (string, error) {
 
-	newMessage := mg.NewMessage("lokaventour@gmail.com", subject, to)
+	newMessage := mg.NewMessage("lokaventour@gmail.com", subject, "", to)
 	newMessage.SetTemplate(template)
 
 	for key, val := range variables {
+		fmt.Println("Key : ", key, "Value : ", val)
 		newMessage.AddVariable(key, val)
 	}
+
+	fmt.Println("Email : ", to)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 	defer cancel()
