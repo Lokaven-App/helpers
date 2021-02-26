@@ -38,15 +38,20 @@ func Mailgun(config Config) *Mailer {
 }
 
 //SendMessage : to send email
-func (mg *Mailer) SendMessage(subject, text, to string) (string, error) {
-	newMessage := mg.NewMessage("lokaventour.com@gmail.com", subject, text, to)
+func (mg *Mailer) SendMessage(variables map[string]interface{}, template, subject, text, to string) (string, error) {
+
+	newMessage := mg.NewMessage("lokaventour@gmail.com", subject, text, to)
 	newMessage.SetTemplate("lokaven")
-	newMessage.AddTemplateVariable("title", subject)
-	newMessage.AddVariable("message", text)
+
+	for key, val := range variables {
+		newMessage.AddVariable(key, val)
+	}
+
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 	defer cancel()
 	_, id, err := mg.Send(ctx, newMessage)
 	return id, err
+
 }
 
 //AddListMemberHost : method for adding member host
