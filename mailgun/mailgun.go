@@ -38,10 +38,10 @@ func Mailgun(config Config) *Mailer {
 }
 
 //SendMessage : to send email
-func (mg *Mailer) SendMessage(variables map[string]interface{}, template, subject, text, to string) (string, error) {
+func (mg *Mailer) SendMessage(variables map[string]interface{}, template, subject, to string) (string, error) {
 
-	newMessage := mg.NewMessage("lokaventour@gmail.com", subject, text, to)
-	newMessage.SetTemplate("lokaven")
+	newMessage := mg.NewMessage("lokaventour@gmail.com", subject, to)
+	newMessage.SetTemplate(template)
 
 	for key, val := range variables {
 		newMessage.AddVariable(key, val)
