@@ -94,10 +94,16 @@ func (mg *Mailer) AddListMemberGuest(member *Member, variable map[string]interfa
 func (mg *Mailer) SendToSubs(to string) (string, error) {
 	newMessage := mg.NewMessage("lokaventour.com@gmail.com",
 		"Hello, %recipient.name%",
-		"Terimakasih sudah bergabung dengan lokaven, Login Cridential Email : %recipient_email% , Password : %recipient.password%", to)
-	newMessage.SetTemplate("lokaven")
+		"", to)
+	newMessage.SetTemplate("lokaven-pilot-user")
 	newMessage.AddTemplateVariable("title", "Hello, %recipient.name%")
-	newMessage.AddVariable("message", "Terimakasih sudah bergabung dengan lokaven, Login Cridential Email : %recipient_email% , Password : %recipient.password%, Link : %recipient.link%")
+	newMessage.AddVariable("fullname", "Hello, %recipient.name%")
+	newMessage.AddVariable("top_message", "Terimakasih sudah bergabung dengan lokaven. Berikut ini adalah kredensial akun anda:")
+	newMessage.AddVariable("email", "%recipient_email%")
+	newMessage.AddVariable("password", "%recipient.password%")
+	newMessage.AddVariable("bottom_message", "Silahkan donwload aplikasi kami di tautan berikut ini:")
+	newMessage.AddVariable("link", "%recipient.link%")
+
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 	defer cancel()
 	_, id, err := mg.Send(ctx, newMessage)
