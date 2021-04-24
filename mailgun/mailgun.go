@@ -97,7 +97,7 @@ func (mg *Mailer) SendToSubs(to string) (string, error) {
 		"", to)
 	newMessage.SetTemplate("lokaven-pilot-user")
 	newMessage.AddTemplateVariable("title", "Hello, %recipient.name%")
-	newMessage.AddVariable("fullname", "Hello, %recipient.name%")
+	newMessage.AddVariable("fullname", "%recipient.name%")
 	newMessage.AddVariable("top_message", "Terimakasih sudah bergabung dengan lokaven. Berikut ini adalah kredensial akun anda:")
 	newMessage.AddVariable("email", "%recipient_email%")
 	newMessage.AddVariable("password", "%recipient.password%")
