@@ -101,7 +101,7 @@ func (mg *Mailer) SendToSubs(to string) (string, error) {
 	newMessage.AddVariable("top_message", "Terimakasih sudah bergabung dengan lokaven. Berikut ini adalah kredensial akun anda:")
 	newMessage.AddVariable("email", "%recipient_email%")
 	newMessage.AddVariable("password", "%recipient.password%")
-	newMessage.AddVariable("bottom_message", "Silahkan donwload aplikasi kami di tautan berikut ini:")
+	newMessage.AddVariable("bottom_message", "Silahkan unduh aplikasi kami di tautan berikut ini:")
 	newMessage.AddVariable("link", "%recipient.link%")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
