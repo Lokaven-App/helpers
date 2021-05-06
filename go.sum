@@ -1,8 +1,6 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/Lokaven-App/proto v0.0.0-20201009064209-512de12e7c0e h1:3DMNaRYiwKtG9MYSSq37UOMlaEw9Gl2KhScO3ECHgL0=
-github.com/Lokaven-App/proto v0.0.0-20201009064209-512de12e7c0e/go.mod h1:M68ixG39PR+vmgrDieXd5Vyq6rF7PBlYkx8AaNqaL7U=
 github.com/Lokaven-App/proto v0.0.0-20201203032920-96d08b922c71 h1:B4qr8HKXGbzBzrk0nTMmAob37oOZKvny/BIG5Nf6k3E=
 github.com/Lokaven-App/proto v0.0.0-20201203032920-96d08b922c71/go.mod h1:M68ixG39PR+vmgrDieXd5Vyq6rF7PBlYkx8AaNqaL7U=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=

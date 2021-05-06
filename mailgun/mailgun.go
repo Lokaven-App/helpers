@@ -90,6 +90,22 @@ func (mg *Mailer) AddListMemberGuest(member *Member, variable map[string]interfa
 	return mg.CreateMember(ctx, true, "guest@mg.lokaventour.com", memberGuest)
 }
 
+//AddMemberSubscription : method for adding subscription list
+func (mg *Mailer) AddMemberSubscription(member *Member, variable map[string]interface{}) error {
+
+	memberGuest := _mailgun.Member{
+		Address:    member.Address,
+		Name:       member.Name,
+		Subscribed: _mailgun.Subscribed,
+		Vars:       variable,
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+	defer cancel()
+
+	return mg.CreateMember(ctx, true, "subscription@mg.lokaventour.com", memberGuest)
+}
+
 //SendToSubs : to send subs an email
 func (mg *Mailer) SendToSubs(to string) (string, error) {
 	newMessage := mg.NewMessage("lokaventour.com@gmail.com",
